@@ -5,6 +5,7 @@ export interface UserExtend {
   age: number;
   height: Unit;
   weight: Unit;
+  avatar: string;
 }
 
 export interface User {
