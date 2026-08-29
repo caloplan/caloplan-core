@@ -18,12 +18,3 @@ export interface User {
   profile: UserExtend;
 }
 
-/**
- * id: int
-    username: str
-    email: EmailStr
-    full_name: str | None
-    service_name: str
-    created_at: datetime
-    updated_at: datetime | None
- */
