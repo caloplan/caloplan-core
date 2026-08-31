@@ -1,4 +1,4 @@
-import type { Nutrition, Food, Meal, MealFood } from "../entity/Meal.js";
+import type { Nutrition, Food, Meal, MealFood } from "../type/Meal.js";
 
 export function calTotalNutrition(food: Food, amount: number): Nutrition {
   const result = {} as Nutrition;
@@ -22,6 +22,16 @@ export function calTotalMealNutrition(meal_foods: MealFood[]): Nutrition {
       };
       result[nutritionKey].value += totalNutrition.value;
     });
+  });
+  return result;
+}
+
+export function convertMealFoodsToRecord(
+  meal_foods: MealFood[],
+): Record<string, MealFood> {
+  const result = {} as Record<string, MealFood>;
+  meal_foods.forEach((meal_food) => {
+    result[meal_food.food.id] = meal_food;
   });
   return result;
 }

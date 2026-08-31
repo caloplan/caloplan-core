@@ -1,4 +1,4 @@
-import type { KiloGram, Gram, UnitNumber, KiloCalorie } from "./Util.js";
+import type { Gram, KiloGram, KiloCalorie, UnitNumber } from "./Util.js";
 
 export interface Nutrition {
   carbon: KiloGram;
@@ -22,7 +22,6 @@ export interface MealFood {
   food: Food;
   amount: number;
   nutrition: Nutrition;
-  created_time: String;
 }
 
 export type MealType = "breakfast" | "launch" | "dinner" | "snack";
@@ -32,7 +31,7 @@ export interface Meal {
   user_id: string;
   tips: String;
   type: MealType;
-  foods: MealFood[];
+  foods: Record<string, MealFood>;
   nutrition: Nutrition;
   created_time: String;
 }
