@@ -1,35 +1,38 @@
-import type { Unit } from "./Util.js";
-import type { DateTime } from "luxon";
+import type { KiloGram, Gram, UnitNumber, KiloCalorie } from "./Util.js";
+
 export interface Nutrition {
-  carbon: Unit;
-  protein: Unit;
-  fat: Unit;
-  salt: Unit;
-  energy: Unit;
+  carbon: KiloGram;
+  protein: KiloGram;
+  fat: KiloGram;
+  salt: Gram;
+  energy: KiloCalorie;
 }
 
 export interface Food {
-  id: String;
-  name: String;
-  unit: Unit;
+  id: string;
+  user_id: string;
+  name: string;
+  image: string;
+  unit: UnitNumber;
   nutrition: Nutrition;
-  created_time: DateTime;
+  created_time: String;
 }
 
 export interface MealFood {
   food: Food;
   amount: number;
   nutrition: Nutrition;
-  created_time: DateTime;
+  created_time: String;
 }
 
 export type MealType = "breakfast" | "launch" | "dinner" | "snack";
 
 export interface Meal {
   id: String;
+  user_id: string;
   tips: String;
   type: MealType;
   foods: MealFood[];
   nutrition: Nutrition;
-  created_time: DateTime;
+  created_time: String;
 }
