@@ -19,6 +19,8 @@
     "start": "tsx src/index.ts",
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
+    "test": "tsx --test \"src/**/*.test.ts\"",
+    "test:watch": "tsx --test --watch \"src/**/*.test.ts\"",
     "clean": "rimraf dist"
   },
   "devDependencies": {
