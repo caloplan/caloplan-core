@@ -22,6 +22,3 @@ export interface KiloCalorie extends UnitNumber {
   unit: "kcal";
   value: number;
 }
-
-
-export type Gender = "man" | "woman";
