@@ -1,43 +1,35 @@
-import {
-  calTotalNutrition,
-  calTotalMealNutrition,
-  convertMealFoodsToRecord,
-} from "./utils/index.js";
-
-import type { Nutrition, Food, MealFood, Meal, MealType } from "./type/Meal.js";
-
-import type {
+// 领域模型（纯类型定义）
+export type {
+  Nutrition,
+  Food,
+  MealFood,
+  Meal,
+  MealType,
+} from "./model/index.js";
+export type {
   UnitNumber,
   CentiMeter,
   KiloGram,
   Gram,
   KiloCalorie,
-} from "./type/Util.js";
+} from "./model/index.js";
 
-import {
+// 领域实体行为（工厂与变更操作）
+export {
   createNutrition,
   createFood,
-  createMeal,
   createMealFood,
-} from "./entity/index.js";
-
-import { refreshMealNutrition } from "./entity/index.js";
-
-import {
+  createMeal,
+  refreshMealNutrition,
   changeMealTips,
   changeMealFoods,
   changeMealFoodAmountById,
+  deleteMealFoodById,
 } from "./entity/index.js";
 
-import { deleteMealFoodById } from "./entity/index.js";
-
-//工具方法
-export { calTotalNutrition, calTotalMealNutrition, convertMealFoodsToRecord };
-//核心类型
-export type { Nutrition, Food, MealFood, Meal, MealType };
-export type { UnitNumber, CentiMeter, KiloGram, Gram, KiloCalorie };
-//实体方法
-export { createNutrition, createFood, createMeal, createMealFood };
-export { refreshMealNutrition };
-export { changeMealTips, changeMealFoods, changeMealFoodAmountById };
-export { deleteMealFoodById };
+// 工具函数
+export {
+  calTotalNutrition,
+  calTotalMealNutrition,
+  convertMealFoodsToRecord,
+} from "./utils/index.js";

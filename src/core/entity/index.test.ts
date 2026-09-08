@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 
 import { DateTime } from "luxon";
 
-import type { Food, Meal, MealFood, Nutrition } from "../type/Meal.js";
+import type { Food, Meal, MealFood, Nutrition } from "../model/index.js";
 import {
   changeMealFoodAmountById,
   changeMealFoods,

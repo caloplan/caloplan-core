@@ -1,6 +1,5 @@
-import { nanoid } from "nanoid";
-import type { Nutrition, Food, MealFood, Meal } from "../type/Meal.js";
-import type { MealType } from "../type/Meal.js";
+﻿import { nanoid } from "nanoid";
+import type { Nutrition, Food, MealFood, Meal, MealType } from "../model/index.js";
 import { DateTime } from "luxon";
 import {
   calTotalMealNutrition,

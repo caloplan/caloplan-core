@@ -1,7 +1,7 @@
 import { describe, test } from "node:test";
 import assert from "node:assert/strict";
 
-import type { Food, MealFood, Nutrition } from "../type/Meal.js";
+import type { Food, MealFood, Nutrition } from "../model/index.js";
 import {
   calTotalMealNutrition,
   calTotalNutrition,

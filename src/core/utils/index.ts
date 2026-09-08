@@ -1,4 +1,4 @@
-import type { Nutrition, Food, Meal, MealFood } from "../type/Meal.js";
+import type { Nutrition, Food, Meal, MealFood } from "../model/index.js";
 
 export function calTotalNutrition(food: Food, amount: number): Nutrition {
   const result = {} as Nutrition;
