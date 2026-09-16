@@ -128,7 +128,7 @@ describe("MealRespository", () => {
     assert.equal(data.id, meal.id);
     assert.equal(data.userId, "user-1");
     assert.equal(data.tips, "high protein");
-    assert.equal(data.createdTime, meal.created_time);
+    assert.equal(data.createdTime, meal.created_time.slice(0, 10));
 
     const snapshot = (data.foods as Record<string, unknown>)["food-1"] as Record<
       string,
@@ -216,6 +216,19 @@ describe("MealRespository", () => {
     const [params] = calls[0]!.args as [Record<string, unknown>];
     assert.equal(params.typeName, "meal");
     assert.deepEqual(params.filters, { user_id: "user-1" });
+  });
+
+  test("listMine filters by created_time when date is provided", async () => {
+    const meal = makeMeal();
+    const { repo, calls } = makeRepo({
+      query: async () => ({ total: 1, items: [makeEntryResponse(meal)] }),
+    });
+
+    const result = await repo.listMine({ date: "2026-09-16" });
+
+    assert.equal(result.length, 1);
+    const [params] = calls[0]!.args as [Record<string, unknown>];
+    assert.deepEqual(params.filters, { user_id: "user-1", created_time: "2026-09-16" });
   });
 
   test("create throws when there is no valid login state and does not call the SDK", async () => {

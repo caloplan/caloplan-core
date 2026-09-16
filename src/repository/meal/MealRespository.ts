@@ -51,6 +51,11 @@ function toSnapshot(mealFood: MealFood): MealFoodSnapshot {
 }
 
 /** core Meal → 存储 data（camelCase） */
+/** 存储层 createdTime 统一存 'yyyy-mm-dd'：便于 meta 服务端按日期精确过滤（json_extract 等值匹配）*/
+function toDateOnly(iso: string): string {
+  return iso.slice(0, 10);
+}
+
 function toMealData(meal: Meal): MealData {
   const foods: Record<string, MealFoodSnapshot> = {};
   for (const [id, mealFood] of Object.entries(meal.foods)) {
@@ -64,7 +69,7 @@ function toMealData(meal: Meal): MealData {
     type: meal.type,
     foods,
     nutrition: meal.nutrition,
-    createdTime: String(meal.created_time),
+    createdTime: toDateOnly(String(meal.created_time)),
   };
 }
 
@@ -173,11 +178,16 @@ export class MealRespository {
   }
 
   /** 查询当前登录用户的 Meal 列表（filters 原样透传，落库字段为 snake_case，故使用 user_id） */
-  async listMine(): Promise<Meal[]> {
+  async listMine(options?: { date?: string }): Promise<Meal[]> {
     const userId = await this.resolveUserId();
+    const filters: Record<string, unknown> = { user_id: userId };
+    if (options?.date) {
+      // 落库 created_time 为 'yyyy-mm-dd'，可直接精确过滤
+      filters.created_time = options.date;
+    }
     const { items } = await this.sdk.entries.query({
       typeName: MEAL_TYPE_NAME,
-      filters: { user_id: userId },
+      filters,
     });
     return items.map((item) => toMeal(item.entityKey, item.data as unknown as MealData));
   }
