@@ -1,6 +1,7 @@
 # caloplan-core
 
 CaloPlan 前端核心业务模块（纯 TypeScript + ESM）——领域模型 / 实体工厂 / 仓储 / meta-sdk 契约。
+
 ## 相关项目（CaloPlan 全家桶）
 
 CaloPlan 全栈项目统一托管在 GitHub Organization [caloplan](https://github.com/caloplan)：
