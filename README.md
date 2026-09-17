@@ -1,6 +1,23 @@
 # caloplan-core
 
 CaloPlan 前端核心业务模块（纯 TypeScript + ESM）——领域模型 / 实体工厂 / 仓储 / meta-sdk 契约。
+## 相关项目（CaloPlan 全家桶）
+
+CaloPlan 全栈项目统一托管在 GitHub Organization [caloplan](https://github.com/caloplan)：
+
+| 类型 | 项目 | 与本项目关系 |
+| --- | --- | --- |
+| 前端 | [coloplan-v2](https://github.com/caloplan/coloplan-v2) | 上层客户端：复用本模块的餐食 / 食物能力 |
+| SDK（本仓库） | [caloplan-core](https://github.com/caloplan/caloplan-core) | 业务核心：meal / food 领域模型与仓储 |
+| SDK | [caloplan-user](https://github.com/caloplan/caloplan-user) | 用户 / 身体 / 营养目标模块（兄弟 SDK） |
+| SDK | [caloplan-chat](https://github.com/caloplan/caloplan-chat) | AI 对话模块（兄弟 SDK） |
+| SDK | [caloplan-cache](https://github.com/caloplan/caloplan-cache) | 通用缓存（本模块缓存经其注入） |
+| 服务 | [fastapi-chat-service](https://github.com/caloplan/fastapi-chat-service) | AI 对话后端（AI 写餐食经 meta 落库） |
+| 服务 | [fastapi-file-service](https://github.com/caloplan/fastapi-file-service) | 图片上传后端 |
+| 服务 | [mservice-fastapi-user](https://github.com/caloplan/mservice-fastapi-user) | 认证 / 用户微服务 |
+| 服务 | [mservice-fastapi-metastorage](https://github.com/caloplan/mservice-fastapi-metastorage) | 元数据微服务：本模块 meal / food 的落库对端 |
+
+本模块不直接操作 HTTP / localStorage：HTTP 契约（`EntriesClient`）由上层注入实现（如 coloplan-v2），缓存经 `caloplan-cache` 注入，数据最终落库到 `mservice-fastapi-metastorage`。
 
 ## 定位与边界
 
